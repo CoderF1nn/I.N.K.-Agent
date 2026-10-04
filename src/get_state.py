@@ -40,11 +40,7 @@ class GameState:
 
 def main():
     CHState = GameState()
-    #yolo = YoloDetection()
-    #pointer_reader = pointer_reader()
-    #window_capture = WindowCapture("Cuphead")
     time.sleep(1)
-    #WindowName = "CVCuphead"
     while True:
         screenshot = CHState.window_capture.get_screenshot()
         prediction = CHState.yolo.detect_single_image(screenshot)

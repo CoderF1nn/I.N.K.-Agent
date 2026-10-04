@@ -18,22 +18,18 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 from gymnasium import spaces
-from keras.src.callbacks import CSVLogger, ModelCheckpoint
-from keras.src.layers import Dense, Flatten
-from keras.src.models import Sequential
-from keras.src.optimizers import Adam
 
 # from logs.PlotLog import PlotLog
 from rl.agents import DQNAgent
 from rl.callbacks import FileLogger, ModelIntervalCheckpoint
 from rl.memory import SequentialMemory
 from rl.policy import EpsGreedyQPolicy, LinearAnnealedPolicy
+from tensorflow import keras
+from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
+from tensorflow.keras.layers import Dense, Flatten
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.optimizers import Adam
 
-# from tensorflow.keras.optimizers import Adam
-# from tensorflow.keras.callbacks import CSVLogger, ModelCheckpoint
-# from tensorflow.keras.layers import Dense, Flatten
-# from tensorflow.keras.models import Sequential
-# from tensorflow.keras.optimizers import Adam
 from CupheadEnv import CupheadEnv
 from src.Control import handle_action
 
