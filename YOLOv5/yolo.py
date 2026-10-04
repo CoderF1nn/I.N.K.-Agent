@@ -13,7 +13,6 @@ class ImageTemplate:
 class YoloPrediction:
     def __init__(self, prediction: torch.Tensor):
         self.prediction = prediction
-        pass
 
     def get_prediction(self):
         return self.prediction
@@ -33,7 +32,6 @@ class YoloDetection:
         self.model = torch.hub.load(
             "ultralytics/yolov5", "custom", path=model_path, source="github"
         )
-        pass
 
     def process_objects(self):
         TempVector = np.full((4, 4), float(-1))
@@ -66,13 +64,27 @@ class YoloDetection:
         return ConfFiltVector
 
     def detect_single_image(self, image: ImageTemplate | cv2.Mat) -> YoloPrediction:
-        labelindex = ["Cuphead", "GoopyPhase1", "GoopyPhase2", "GoopyPhase3"]
         if isinstance(image, ImageTemplate):
             image_mat = image.get_template()
         else:
             image_mat = image
 
         prediction = self.model(image_mat, size=640)
-        self.detectedobjects = prediction.xyxyn[0][:, :].numpy()
+        self.detectedobjects = prediction.xyxyn[0][:, :].cpu().numpy()
 
         return YoloPrediction(prediction)
+
+def main():
+    from WindowCapture.window_capture import WindowCapture
+
+    yolo = YoloDetection()
+    window_capture = WindowCapture()
+    WindowName="CVCuphead"
+
+    while True:
+        screenshot = window_capture.get_screenshot()
+        prediction = yolo.detect_single_image(screenshot)
+        prediction.show(1, WindowName)
+
+if __name__ == "__main__":
+    main()
