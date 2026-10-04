@@ -7,7 +7,7 @@ from YOLOv5.WindowCapture.window_capture import WindowCapture
 from YOLOv5.yolo import YoloDetection
 
 
-class CHState:
+class GameState:
     def __init__(
         self, WindowName="CVCuphead", IconPath="CupheadAIProject.ico", Debug=False
     ):
@@ -39,18 +39,19 @@ class CHState:
         """
 
 def main():
-    yolo = YoloDetection()
-    pointer_reader = pointer_reader()
-    window_capture = WindowCapture("Cuphead")
+    CHState = GameState()
+    #yolo = YoloDetection()
+    #pointer_reader = pointer_reader()
+    #window_capture = WindowCapture("Cuphead")
     time.sleep(1)
-    WindowName = "CVCuphead"
+    #WindowName = "CVCuphead"
     while True:
-        screenshot = window_capture.get_screenshot()
-        prediction = yolo.detect_single_image(screenshot)
-        ConfFiltVector = yolo.process_objects()
-        print(np.append(ConfFiltVector, pointer_reader.get_health()))
-        prediction.show(1, WindowName)
-        #hwnd = win32gui.FindWindow(None, WindowName)
+        screenshot = CHState.window_capture.get_screenshot()
+        prediction = CHState.yolo.detect_single_image(screenshot)
+        ConfFiltVector = CHState.yolo.process_objects()
+        print(np.append(ConfFiltVector, CHState.pointer_reader.get_health()))
+        prediction.show(1, CHState.WindowName)
+        #hwnd = win32gui.FindWindow(None, GameState.WindowName)
         #icon_path = "CupheadAIProject.ico"
         #win32gui.SendMessage(hwnd, win32con.WM_SETICON, win32con.ICON_BIG, win32gui.LoadImage(None, IconPath, win32con.IMAGE_ICON, 0, 0, win32con.LR_LOADFROMFILE | win32con.LR_DEFAULTSIZE))
 
