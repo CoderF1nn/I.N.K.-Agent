@@ -28,7 +28,7 @@ class YoloPrediction:
         cv2.waitKey(wait)
 
 class YoloDetection:
-    def __init__(self, model_path: str = "YOLOv5/YoloModels/cuphead_goopy_model.pt"):
+    def __init__(self, model_path: str = "src/YOLOv5/YoloModels/cuphead_goopy_model.pt"):
         self.model = torch.hub.load(
             "ultralytics/yolov5", "custom", path=model_path, source="github"
         )
