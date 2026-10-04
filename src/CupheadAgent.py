@@ -30,8 +30,8 @@ from tensorflow.keras.layers import Dense, Flatten
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import Adam
 
+from Control import handle_action
 from CupheadEnv import CupheadEnv
-from src.Control import handle_action
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -45,9 +45,9 @@ Config = {
     "DecayRate": 0.1,
     "LogDir": "logs",
     "StartFromCheckpoint": True,
-    "CheckpointDir": "checkpoints",
+    "CheckpointDir": "src/checkpoints",
     "CheckpointPrefix": "RewardV2",
-    "LoadCheckpointName": "RewardV250000",
+    "LoadCheckpointName": "RewardV2100000",
 }
 
 

@@ -5,8 +5,8 @@ import cv2
 import gymnasium as gym
 import numpy as np
 
+from Control import handle_action
 from get_state import GameState
-from src.Control import handle_action
 
 CHS = GameState()
 
@@ -29,6 +29,9 @@ class CupheadEnv(gym.Env):
         # print(action)
         handle_action.HandleAction.hold("x")
 
+        #NEED TO FIX BECAUSE GPU FAST
+        #can add a stopwatch set time between states(Start-stop wait how long that difference is between target fps)
+        time.sleep(.1)
         self.state = CHS.ReadYolo()
 
         # Calculate reward
